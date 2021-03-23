@@ -1,4 +1,4 @@
 module.exports = {
 	basePath: '/Website',
-	assetPrefix: '/Website/',
+	assetPrefix: '/forcedcontact.github.io/Website/',
 }
