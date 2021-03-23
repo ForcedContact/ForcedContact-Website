@@ -1,27 +1,11 @@
-import {createMedia} from '@artsy/fresnel';
-import React, {Component} from 'react';
+import React, {Fragment} from 'react';
 import {
-	Button,
-	Container,
+	Button, Container,
 	Grid,
-	Header,
-	Icon,
-	Menu,
+	Header, Icon,
 	Segment,
 } from 'semantic-ui-react';
 
-const {MediaContextProvider} = createMedia({
-	breakpoints: {
-		mobile: 0,
-		tablet: 768,
-		computer: 1024,
-	},
-})
-
-/* Heads up!
- * HomepageHeading uses inline styling, however it's not the best practice. Use CSS or styled
- * components for such things.
- */
 const HomepageHeading = ({mobile}) => (
 	<Container text>
 		<Header
@@ -37,7 +21,7 @@ const HomepageHeading = ({mobile}) => (
 		/>
 		<Header
 			as='h2'
-			content='By Tyreal Gray'
+			content='A science fiction novel about contact with alien civilizations'
 			inverted
 			style={{
 				fontSize: mobile ? '1.5em' : '1.7em',
@@ -52,65 +36,15 @@ const HomepageHeading = ({mobile}) => (
 	</Container>
 )
 
-/* Heads up!
- * Neither Semantic UI nor Semantic UI React offer a responsive navbar, however, it can be implemented easily.
- * It can be more complicated, but you can create really flexible markup.
- */
-class DesktopContainer extends Component {
-	render() {
-		const {children} = this.props;
-
-		return (
-			<>
-				<Segment
-					inverted
-					textAlign='center'
-					style={{minHeight: 700, padding: '1em 0em'}}
-					vertical
-				>
-					<Menu
-						fixed={'top'}
-						inverted
-						pointing
-						secondary
-						size='large'
-						style={{background:'black'}}
-					>
-						<Container >
-							<Menu.Item as='a' active>
-								Home
-							</Menu.Item>
-							<Menu.Item position='right'>
-								<Button as='a' inverted>
-									Load
-								</Button>
-								<Button as='a' inverted primary style={{marginLeft: '0.5em'}}>
-									Save
-								</Button>
-							</Menu.Item>
-						</Container>
-					</Menu>
-					<HomepageHeading/>
-				</Segment>
-
-				{children}
-			</>
-		)
-	}
-}
-
-const ResponsiveContainer = ({children}) => (
-	/* Heads up!
-	 * For large applications it may not be best option to put all page into these containers at
-	 * they will be rendered twice for SSR.
-	 */
-	<MediaContextProvider>
-		<DesktopContainer>{children}</DesktopContainer>
-	</MediaContextProvider>
-);
-
 const Home = () => (
-	<ResponsiveContainer>
+	<Fragment>
+		<Segment
+			inverted
+			textAlign='center'
+			style={{minHeight: 700, padding: '1em 0em'}}
+			vertical
+		><HomepageHeading/>
+		</Segment>
 		<Segment style={{padding: '8em 0em'}} vertical>
 			<Grid container stackable verticalAlign='middle'>
 				<Grid.Row>
@@ -136,8 +70,7 @@ const Home = () => (
 				</Grid.Row>
 			</Grid>
 		</Segment>
-
-	</ResponsiveContainer>
-)
+	</Fragment>
+);
 
 export default Home
