@@ -29,8 +29,14 @@ const HomepageHeading = ({mobile}) => (
 				marginTop: mobile ? '0.5em' : '1.5em',
 			}}
 		/>
-		<Button primary size='huge'>
-			Get Started
+		<Button primary size='huge' onClick={()=>{
+			window.open(
+				`${window.location.pathname}/content`,
+				'_blank', // <- This is what makes it open in a new window.
+				'noopener,noreferrer'
+			);
+		}}>
+			Begin Contact
 			<Icon name='right arrow'/>
 		</Button>
 	</Container>
@@ -48,24 +54,30 @@ const Home = () => (
 		<Segment style={{padding: '8em 0em'}} vertical>
 			<Grid container stackable verticalAlign='middle'>
 				<Grid.Row>
-					<Grid.Column width={8}>
+					<Grid.Column>
 						<Header as='h3' style={{fontSize: '2em'}}>
-							Text PlaceHolder
+							Really like ForcedContact so far and want to get involved?
 						</Header>
 						<p style={{fontSize: '1.33em'}}>
-							Text PlaceHolder
+							Help it to translate into your language so more people could read it
 						</p>
 						<Header as='h3' style={{fontSize: '2em'}}>
-							Text PlaceHolder
+							Get access to ongoing editing content and help with translation!
 						</Header>
 						<p style={{fontSize: '1.33em'}}>
-							Text PlaceHolder
+							Simply create a Github account and join
 						</p>
 					</Grid.Column>
 				</Grid.Row>
 				<Grid.Row>
 					<Grid.Column textAlign='center'>
-						<Button size='huge'>Check Them Out</Button>
+						<Button size='huge' onClick={()=>{
+							window.open(
+								'https://forced-contact.herokuapp.com/',
+								'_blank', // <- This is what makes it open in a new window.
+								'noopener,noreferrer'
+							);
+						}}>Join</Button>
 					</Grid.Column>
 				</Grid.Row>
 			</Grid>
