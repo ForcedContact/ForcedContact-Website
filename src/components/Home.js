@@ -5,8 +5,13 @@ import {
 	Header, Icon,
 	Segment,
 } from 'semantic-ui-react';
+import { useRouter } from 'next/router'
 
-const HomepageHeading = ({mobile}) => (
+const HomepageHeading = ({mobile}) => {
+
+	const router = useRouter();
+
+	return (
 	<Container text>
 		<Header
 			as='h1'
@@ -30,17 +35,13 @@ const HomepageHeading = ({mobile}) => (
 			}}
 		/>
 		<Button primary size='huge' onClick={()=>{
-			window.open(
-				`${window.location.pathname}/content`,
-				'_blank', // <- This is what makes it open in a new window.
-				'noopener,noreferrer'
-			);
+			router.push('/lang');
 		}}>
 			Begin Contact
 			<Icon name='right arrow'/>
 		</Button>
 	</Container>
-)
+)}
 
 const Home = () => (
 	<Fragment>
