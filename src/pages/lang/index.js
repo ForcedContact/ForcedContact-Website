@@ -15,20 +15,6 @@ function LanguagePage() {
 		content: 'English'
 	}];
 
-	const links = langs.map((lang) => {
-		return (<Container style={{padding: 10}}
-		                   textAlign="center">
-			<Link
-				href={{
-					pathname: '/content',
-					query: {lang: lang.name},
-				}}
-			>
-				<a>{lang.content}</a>
-			</Link>
-		</Container>);
-	});
-
 	return <Segment
 		inverted
 		textAlign="center"
@@ -39,7 +25,20 @@ function LanguagePage() {
 		           textAlign="center">
 
 			<p>Choosing your language</p>
-			{links}
+			{langs.map((lang) => {
+				return (<Container style={{padding: 10}}
+				                   textAlign="center">
+					<Link
+						href={{
+							pathname: '/content',
+							query: {lang: lang.name,
+							page:0},
+						}}
+					>
+						<a>{lang.content}</a>
+					</Link>
+				</Container>);
+			})}
 		</Container>
 	</Segment>;
 }

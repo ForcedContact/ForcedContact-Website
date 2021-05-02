@@ -5,11 +5,13 @@ import {
 	Container,
 } from 'semantic-ui-react';
 import MarkdownViewer from "../../components/MarkdownViewer";
+import Link from 'next/link';
+import { useRouter } from 'next/router'
 
 function ContentPage() {
-
+	const router = useRouter();
+	const {page, lang} = router.query;
 	const [source, setSource] = useState('');
-	const [page, setPage] = useState(0);
 
 	useEffect(async ()=>{
 		const response = await fetch('https://raw.githubusercontent.com/ForcedContact/Content/master/README.md');
@@ -28,16 +30,26 @@ function ContentPage() {
 		           textAlign="center">
 
 			<Button primary size='huge' onClick={()=>{
-				setPage(page+1);
+				router.push({
+					pathname:'/content',
+					query:{
+						lang:lang,
+						page: Number(page)+1
+					},
+				}, undefined, { shallow: true });
 			}}/>
 		</Container>
 		<MarkdownViewer
 			source={source}
 		/>
 	</Segment>
-		<MarkdownViewer
-			source={source}
-		/>
+		<Container>
+			This work is licensed under a
+				<Link href={'https://github.com/ForcedContact/Content/blob/master/LICENSE'}>
+					<a>{' Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License'}
+					</a>
+				</Link>.
+		</Container>
 	</>;
 }
 
